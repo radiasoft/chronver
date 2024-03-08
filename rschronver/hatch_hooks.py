@@ -3,10 +3,12 @@
 :copyright: Copyright (c) 2024 RadiaSoft LLC.  All Rights Reserved.
 :license: http://www.apache.org/licenses/LICENSE-2.0.html
 """
+import hatchling.builders.hooks.plugin.interface
 import hatchling.plugin
 import hatchling.version.source.plugin.interface
 import os.path
 import rschronver.git
+
 
 _PLUGIN_NAME = "rschronver"
 
@@ -21,7 +23,7 @@ def hatch_register_version_source():
     return RSChronVerVersionSource
 
 
-class RSChronVerBuildHook(hatchling.version.source.plugin.interface.BuildHookInterface):
+class RSChronVerBuildHook(hatchling.builders.hooks.plugin.interface.BuildHookInterface):
 
     PLUGIN_NAME = _PLUGIN_NAME
 

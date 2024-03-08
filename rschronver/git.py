@@ -6,7 +6,6 @@
 import datetime
 import locale
 import os.path
-import pkg_resources
 import re
 import subprocess
 import sys
@@ -25,21 +24,20 @@ def version():
         str: canonicalized "yyyymmdd.hhmmss"
     """
 
-    def _fmt(value=None):
-        # Let pkg_resources canonicalize to avoid warnings
-        return str(pkg_resources.parse_version(v.strftime("%Y%m%d.%H%M%S")))
+    def _fmt(value):
+        return value.strftime("%Y%m%d.%H%M%S")
 
     def _head():
         return datetime.datetime.fromtimestamp(
             float(
                 _sh(
-                    [
+                    (
                         "git",
                         "log",
                         "-1",
                         "--format=%ct",
-                        _sh(["git", "rev-parse", "--abbrev-ref", "HEAD"]),
-                    ]
+                        _sh(("git", "rev-parse", "--abbrev-ref", "HEAD")),
+                    ),
                 ),
             ),
         )
@@ -48,8 +46,7 @@ def version():
         return bool(
             _sh(
                 ("git", "ls-files", "--modified", "--deleted"),
-                stderr=subprocess.STDOUT,
-            ).splitlines()
+            ),
         )
 
     def _is_repo():
@@ -57,7 +54,7 @@ def version():
 
     def _sh(cmd):
         try:
-            res = subprocess.check_output(cmd)
+            res = subprocess.check_output(cmd, stderr=subprocess.STDOUT)
             if isinstance(res, bytes):
                 return res.decode(locale.getpreferredencoding()).rstrip()
             return None
@@ -68,4 +65,5 @@ def version():
 
     if not _is_repo():
         raise ValueError("Must have a git repo or an source distribution")
+    sys.stderr.write(str(sys.path) + " xxxx\n")
     return _fmt(datetime.datetime.utcnow() if _is_edited() else _head())

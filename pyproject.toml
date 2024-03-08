@@ -4,13 +4,13 @@ build-backend = "hatchling.build"
 
 [project]
 authors = [
-  { name = "RadiaSoft LLC", email = "pip@radiasoft.net" },
+    { name = "RadiaSoft LLC", email = "pip@pykern.org" },
 ]
 classifiers = [
-  "Development Status :: 3 - Alpha",
-  "License :: OSI Approved :: Apache Software License",
-  "Programming Language :: Python",
-  "Programming Language :: Python :: Implementation :: CPython",
+    "Development Status :: 3 - Alpha",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: Implementation :: CPython",
 ]
 dependencies = [
   "hatchling>=1.1.0",
@@ -18,14 +18,13 @@ dependencies = [
 description = 'Build system plugin for pure chronological versions from Git'
 dynamic = ["version"]
 keywords = [
-  "git",
-  "hatch",
-  "plugin",
-  "scm",
-  "vcs",
-  "version",
+    "git",
+    "hatch",
+    "plugin",
+    "scm",
+    "vcs",
+    "version",
 ]
-license = { file = "LICENSE" }
 name = "rschronver"
 readme = "README.md"
 requires-python = ">=3.8"
@@ -34,7 +33,7 @@ requires-python = ">=3.8"
 rschronver = "rschronver.hatch_hooks"
 
 [project.urls]
-Source = "https://github.com/radiasoft/rschronver"
+Homepage = "https://github.com/radiasoft/rschronver"
 
 [tool.hatch.version]
 path = "rschronver/__init__.py"
