@@ -16,7 +16,7 @@ dependencies = [
   "hatchling>=1.1.0",
 ]
 description = 'Build system plugin for pure chronological versions from Git'
-dynamic = ["version"]
+version = "20240308.225804"
 keywords = [
     "git",
     "hatch",
@@ -34,6 +34,3 @@ rschronver = "rschronver.hatch_hooks"
 
 [project.urls]
 Homepage = "https://github.com/radiasoft/rschronver"
-
-[tool.hatch.version]
-path = "rschronver/__init__.py"

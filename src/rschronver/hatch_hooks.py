@@ -6,7 +6,7 @@
 import hatchling.builders.hooks.plugin.interface
 import hatchling.plugin
 import hatchling.version.source.plugin.interface
-import os.path
+import pathlib
 import rschronver.git
 
 
@@ -29,7 +29,7 @@ class RSChronVerBuildHook(hatchling.builders.hooks.plugin.interface.BuildHookInt
 
     def initialize(self, version, build_data):
         p = f"_{self.PLUGIN_NAME}.py"
-        with open(os.path.join(self.root, p), "wt") as f:
+        with pathlib.Path(self.root, p).open("wt") as f:
             f.write(f'__version__ = "{self.metadata.version}"\n')
         build_data["artifacts"].append(f"/{p}")
 
