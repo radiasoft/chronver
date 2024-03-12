@@ -64,5 +64,5 @@ def version():
             raise
 
     if not _is_repo():
-        raise ValueError("Must have a git repo or an source distribution")
+        return None
     return _fmt(datetime.datetime.utcnow() if _is_edited() else _head())
