@@ -1,9 +1,9 @@
 ## Introduction
 
-RSChroVer is a pyproject plugin to create a strictly chronological
+RSChronVer is a pyproject plugin to create a strictly chronological
 version (yyyymmdd.hhmmss) from current Git version or time now.
 
-Implemented for [Hatch](https://github.com/pypa/hatch), currently.
+Implemented for [Setuptools](https://setuptools.pypa.io/en/latest/userguide/pyproject_config.html).
 
 ## Usage
 
@@ -11,18 +11,21 @@ Add this to `pyproject.toml`:
 
 ```toml
 [build-system]
-requires = ["hatchling", "rschronver"]
-build-backend = "hatchling.build"
+requires = ["setuptools>=61", "rschronver"]
+build-backend = "setuptools.build_meta"
 
-[tool.hatch.version]
-source = "rschronver"
+[project]
+dynamic = ["version"]
 ```
 
-Creates a file `_rschronver.py` in the project root as an artifact.
-Import this into `__init__.py` as follows:
+For ``__init__.py`` use this:
 
 ```py
-import ._rschronver
+import importlib.metadata
 
-__version__ = _rschronver.__version__
+try:
+    __version__ = importlib.metadata.version("pykern")
+except importlib.metadata.PackageNotFoundError:
+    # We only have a version once the package is installed.
+    pass
 ```
