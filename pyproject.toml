@@ -45,5 +45,3 @@ version = { attr = "_own_version.from_git" }
 
 [tool.setuptools.packages.find]
 namespaces = false
-#
-#[tool.setuptools_scm]
