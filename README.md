@@ -5,8 +5,11 @@ RSChronVer is a
 plugin to add a
 [chronological version](https://www.robnagler.com/2015/04/11/Major-Release-Syndrome.html)
 (yyyymmdd.hhmmss)
-to a Python package's metadata from the current Git commit.
+to a Python package's metadata from the current Git commit of `HEAD`.
 This ensures a unique, sortable version for packages on [PiPI](https://pypi.org).
+
+In development, if there are modifications, uses current time. This
+ensures that `pip install --upgrade` works.
 
 [RadiaSoft](https://radiasoft.net) uses chronological versioning for all its packages.
 

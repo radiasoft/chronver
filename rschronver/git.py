@@ -3,6 +3,7 @@
 :copyright: Copyright (c) 2024 RadiaSoft LLC.  All Rights Reserved.
 :license: http://www.apache.org/licenses/LICENSE-2.0.html
 """
+
 import datetime
 import locale
 import os.path
@@ -12,16 +13,17 @@ import sys
 
 
 def version():
-    """Chronological version string for most recent commit or time of newer file.
+    """Chronological version string for most recent commit or current time
 
-    Finds the commit date of the most recent branch. Uses ``git
-    ls-files`` to find files under git control which are modified or
-    to be deleted, in which case we assume this is a developer, and we
+    Finds the commit date of git HEAD. Uses ``git status``
+    to find files under git control which are modified or to be
+    deleted, in which case we assume this is a developer, and we
     should just use the current time for the version. It will be newer
-    than any committed version, which is all we care about for upgrades.
+    than any committed version, which is all we care about for
+    upgrades.
 
     Returns:
-        str: canonicalized "yyyymmdd.hhmmss"
+        str: canonicalized "yyyymmdd.hhmmss" or ``None`` if not a git repo
     """
 
     def _fmt(value):
@@ -43,9 +45,20 @@ def version():
         )
 
     def _is_edited():
+        """Determine if any files are changed
+
+        Untracked files are hard to know. Could be junk files in
+        a developer's repo. This only necessary for development anyway.
+        """
         return bool(
             _sh(
-                ("git", "ls-files", "--modified", "--deleted"),
+                (
+                    "git",
+                    "status",
+                    "--ignore-submodules",
+                    "--porcelain=v1",
+                    "--untracked-files=no",
+                ),
             ),
         )
 
