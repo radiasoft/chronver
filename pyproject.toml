@@ -1,7 +1,6 @@
 [build-system]
 build-backend = "_own_version:build_meta"
 requires = ["setuptools>=61", "setuptools-scm>=8"]
-#build-backend = "setuptools.build_meta"
 backend-path = ["."]
 
 [project]
@@ -15,15 +14,16 @@ classifiers = [
     "Programming Language :: Python :: Implementation :: CPython",
 ]
 dependencies = [
+    "build>=1",
     "setuptools>=61",
 ]
 description = 'Build system plugin for pure chronological versions from Git'
 dynamic = ["version"]
 keywords = [
     "git",
-    "hatch",
     "plugin",
     "scm",
+    "setuptools",
     "vcs",
     "version",
 ]
@@ -34,19 +34,11 @@ requires-python = ">=3.8"
 [project.entry-points."setuptools.finalize_distribution_options"]
 rschronver = "rschronver.setuptools_hooks:set_version"
 
-[project.entry-points.hatch]
-rschronver = "rschronver.hatch_hooks"
-
 [project.urls]
 Homepage = "https://github.com/radiasoft/rschronver"
 
 [tool.setuptools]
-#packages = ["hatchit"]
-#zip-safe = false
 license-files = ["LICENSE"]
-#include-package-data = true
-
-#[project.optional-dependencies]
 
 [tool.setuptools.dynamic]
 version = { attr = "_own_version.from_git" }
