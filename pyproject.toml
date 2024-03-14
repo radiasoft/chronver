@@ -17,7 +17,7 @@ dependencies = [
     "build>=1",
     "setuptools>=61",
 ]
-description = 'Build system plugin for pure chronological versions from Git'
+description = 'Setuptools plugin for strictly chronological versions from Git'
 dynamic = ["version"]
 keywords = [
     "git",
