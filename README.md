@@ -8,16 +8,16 @@ plugin to add a
 to a Python package's metadata from the current Git commit of `HEAD`.
 This ensures a unique, sortable version for packages on [PiPI](https://pypi.org).
 
-In development, if there are modifications, uses current time. This
-ensures that `pip install --upgrade` works.
-
-[RadiaSoft](https://radiasoft.net) uses chronological versioning for all its packages.
+In development, if there are modifications, current time will be
+returned. This ensures that `pip install` works, because there's
+always a new version, increasing version.
 
 A chronological version is distinct from a
-[CalVer](https://calver.org), because it is strictly and meaningfully
-sortable.  There are no major, minor, micro, or modifier
-numbers. Releases are a flow from one to the other. We do adopt a
-stricter view of CalVer's tag line: Versioning gets better with time.
+[CalVer](https://calver.org), because it is alphabetically sortable.
+There are no non-alphabetically sortable modifiers. The time stamp
+identifies a specific commit so a commit SHA doesn't need to be
+included as a modifier. We do adopt a stricter view of CalVer's tag
+line: Versioning gets better with time.
 
 ## Usage
 
@@ -52,11 +52,14 @@ If you are using a Python before 3.8, use the backport
 
 ## Releases without breakage (almost)
 
-At RadiaSoft we strive to maintain backward compatability for as long
-as our users require it.  This is why there are no major or minor
-release numbers in chronological versions; there are no breaking API
-changes (except defects, of course) with each release. We feel it is
-our obligation to not break uses by clients of our APIs.
+[RadiaSoft](https://radiasoft.net) uses chronological versioning for
+all its releases. We strive to maintain backward compatability for as
+long as our users require it.
+
+This is why there are no major or minor release numbers in
+chronological versions; there are no breaking API changes (except
+defects, of course) with each release. We feel it is our obligation to
+not break uses by clients of our APIs.
 
 There are times when this is impossible or impractical, such as the
 move away from Python 2. In those cases, we give clients warnings and
