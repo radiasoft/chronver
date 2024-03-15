@@ -1,6 +1,6 @@
 [build-system]
 build-backend = "_own_version:build_meta"
-requires = ["setuptools>=61", "setuptools-scm>=8"]
+requires = ["setuptools>=66"]
 backend-path = ["."]
 
 [project]
@@ -17,7 +17,7 @@ dependencies = [
     "build>=1",
     "setuptools>=61",
 ]
-description = 'Setuptools plugin for strictly chronological versions from Git'
+description = 'Setuptools plugin for chronological versions from Git'
 dynamic = ["version"]
 keywords = [
     "git",
