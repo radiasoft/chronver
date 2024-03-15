@@ -3,8 +3,10 @@
 :copyright: Copyright (c) 2024 RadiaSoft LLC.  All Rights Reserved.
 :license: http://www.apache.org/licenses/LICENSE-2.0.html
 """
+
 import rschronver.git
 import rschronver.pkg_info
+
 
 def set_version(dist):
     """Set dist.metadata.version from `version`"""
