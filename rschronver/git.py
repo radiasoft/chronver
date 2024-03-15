@@ -56,7 +56,7 @@ def version():
                     "git",
                     "status",
                     "--ignore-submodules",
-                    "--porcelain=v1",
+                    "--porcelain",
                     "--untracked-files=no",
                 ),
             ),
@@ -73,7 +73,7 @@ def version():
             return None
         except subprocess.CalledProcessError as e:
             if hasattr(e, "output") and len(e.output):
-                sys.stderr.write(e.output)
+                sys.stderr.write(e.output.decode(locale.getpreferredencoding()))
             raise
 
     if not _is_repo():
