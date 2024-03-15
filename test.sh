@@ -10,7 +10,7 @@ test_err() {
 }
 
 test_main() {
-    if grep -q -r -i pykern rschronver; then
+    if grep -r -i pykern rschronver; then
         test_err "rschronver python files may not use/mention pykern"
     fi
     pykern ci run
