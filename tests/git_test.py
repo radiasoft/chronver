@@ -9,7 +9,7 @@ import contextlib
 
 def test_basic():
     from pykern import pkunit
-    from rschronver import git
+    from chronver import git
     import datetime
     import os
     import time
@@ -32,7 +32,7 @@ def test_basic():
 
 def test_git_status_error(capsys):
     from pykern import pkunit, pkio, pkdebug
-    from rschronver import git
+    from chronver import git
     import os
     import subprocess
 
@@ -47,7 +47,7 @@ def test_git_status_error(capsys):
 @contextlib.contextmanager
 def _setup():
     from pykern import pkunit, pkio, pkdebug
-    from rschronver import git
+    from chronver import git
     import os
 
     with pkunit.save_chdir_work() as d:

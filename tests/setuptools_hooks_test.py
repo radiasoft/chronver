@@ -7,7 +7,7 @@
 
 def test_basic():
     from pykern import pkunit
-    from rschronver import setuptools_hooks
+    from chronver import setuptools_hooks
     import datetime
     import os
 

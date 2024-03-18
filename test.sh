@@ -10,8 +10,8 @@ test_err() {
 }
 
 test_main() {
-    if grep -r -i pykern rschronver; then
-        test_err "rschronver python files may not use/mention pykern"
+    if grep -r -i pykern chronver; then
+        test_err "chronver python files may not use/mention pykern"
     fi
     # workaround https://github.com/radiasoft/pykern/issues/453
     trap 'rm -f setup.py' EXIT

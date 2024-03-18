@@ -7,7 +7,7 @@
 import importlib.metadata
 
 try:
-    __version__ = importlib.metadata.version("rschronver")
+    __version__ = importlib.metadata.version("chronver")
 except importlib.metadata.PackageNotFoundError:
     # We only have a version once the package is installed.
     pass

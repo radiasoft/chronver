@@ -27,15 +27,15 @@ keywords = [
     "vcs",
     "version",
 ]
-name = "rschronver"
+name = "chronver"
 readme = "README.md"
 requires-python = ">=3.8"
 
 [project.entry-points."setuptools.finalize_distribution_options"]
-rschronver = "rschronver.setuptools_hooks:set_version"
+chronver = "chronver.setuptools_hooks:set_version"
 
 [project.urls]
-Homepage = "https://github.com/radiasoft/rschronver"
+Homepage = "https://github.com/radiasoft/chronver"
 
 [tool.setuptools]
 license-files = ["LICENSE"]
