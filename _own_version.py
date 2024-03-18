@@ -9,10 +9,10 @@ This only works if build-system.backend-path is respected
 # Actual build system: "_own_version:build_meta"
 from setuptools import build_meta as build_meta
 import re
-import rschronver.setuptools_hooks
+import chronver.setuptools_hooks
 
 
 def __getattr__(name):
     if name == "from_git":
-        return rschronver.setuptools_hooks.version("rschronver")
+        return chronver.setuptools_hooks.version("chronver")
     raise AttributeError(name)

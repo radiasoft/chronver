@@ -4,8 +4,8 @@
 :license: http://www.apache.org/licenses/LICENSE-2.0.html
 """
 
-import rschronver.git
-import rschronver.pkg_info
+import chronver.git
+import chronver.pkg_info
 
 
 def set_version(dist):
@@ -19,10 +19,10 @@ def version(name):
     Returns:
         str: chronological version or raises `LookupError`
     """
-    v = rschronver.git.version() or rschronver.pkg_info.version()
+    v = chronver.git.version() or chronver.pkg_info.version()
     if v is None:
         raise LookupError(
-            f"rschronver was unable to detect version for {name}.\n\n"
+            f"chronver was unable to detect version for {name}.\n\n"
             "Make sure you're either building from a fully intact git repository "
             "or PyPI tarballs. Most other sources (such as GitHub's tarballs, a "
             "git checkout without the .git folder) don't contain the necessary "
