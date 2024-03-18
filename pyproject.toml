@@ -1,6 +1,6 @@
 [build-system]
 build-backend = "_own_version:build_meta"
-requires = ["setuptools>=66"]
+requires = ["setuptools>=66", "setuptools_scm"]
 backend-path = ["."]
 
 [project]
