@@ -13,9 +13,9 @@ test_main() {
     if grep -r -i pykern chronver; then
         test_err "chronver python files may not use/mention pykern"
     fi
-    # workaround https://github.com/radiasoft/pykern/issues/453
-    trap 'rm -f setup.py' EXIT
-    touch setup.py
+    if ! pip show pykern >& /dev/null; then
+        pip install pykern
+    fi
     pykern ci run
 }
 
