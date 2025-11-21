@@ -28,6 +28,9 @@ def test_basic():
             f.write("change")
         b = git.version()
         pkunit.pkok(a < b, "expect={} should be older than={}", a, b)
+        time.sleep(1)
+        c = git.version()
+        pkunit.pkeq(b, c, "expected same time stamp")
 
 
 def test_git_status_error(capsys):
@@ -53,5 +56,6 @@ def _setup():
     with pkunit.save_chdir_work() as d:
         rv = d.join(".git")
         os.environ["GIT_DIR"] = str(rv)
+        os.environ["PIP_BUILD_TRACKER"] = str(d)
         pkunit.pkeq(None, git.version())
         yield rv

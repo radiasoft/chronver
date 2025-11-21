@@ -10,7 +10,14 @@ import os.path
 import re
 import subprocess
 import sys
+import time
 
+#: Where version is stored when _is_edited() is true
+_CACHE_FILE = "._chronver_cache"
+
+_FMT = "%Y%m%d.%H%M%S"
+
+_FMT_TIME_LEN = len(_FMT) + 2
 
 def version():
     """Chronological version string for most recent commit or current time
@@ -27,10 +34,10 @@ def version():
     """
 
     def _fmt(value):
-        return value.strftime("%Y%m%d.%H%M%S")
+        return datetime.datetime.fromtimestamp(value).strftime(_FMT)
 
     def _head():
-        return datetime.datetime.fromtimestamp(
+        return _fmt(
             float(
                 _sh(
                     (
@@ -65,6 +72,30 @@ def version():
     def _is_repo():
         return os.path.isdir(".git")
 
+    def _now():
+        """Cache time now in a file
+
+        `version` is called multiple times during a wheel build in
+        separate processes so can't cache in memory. Need to have the
+        same version every time. Only called when editing, not
+        production.
+        """
+        # POSIT: pip sets this to the build dir
+        p = os.getenv("PIP_BUILD_TRACKER") + "/" + _CACHE_FILE
+        try:
+            f = open(p, "rt")
+            rv = f.read()
+            f.close()
+            if len(rv) == _FMT_TIME_LEN:
+                return rv
+        except FileNotFoundError:
+            pass
+        f = open(p, "wt")
+        rv = _fmt(time.time())
+        f.write(rv)
+        f.close()
+        return rv
+
     def _sh(cmd):
         try:
             res = subprocess.check_output(cmd, stderr=subprocess.STDOUT)
@@ -78,4 +109,4 @@ def version():
 
     if not _is_repo():
         return None
-    return _fmt(datetime.datetime.utcnow() if _is_edited() else _head())
+    return _now() if _is_edited() else _head()
