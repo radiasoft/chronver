@@ -19,6 +19,7 @@ _FMT = "%Y%m%d.%H%M%S"
 
 _FMT_TIME_LEN = len(_FMT) + 2
 
+
 def version():
     """Chronological version string for most recent commit or current time
 
