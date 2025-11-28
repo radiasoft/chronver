@@ -6,6 +6,7 @@
 
 import datetime
 import locale
+import os
 import os.path
 import re
 import subprocess
@@ -81,8 +82,8 @@ def version():
         same version every time. Only called when editing, not
         production.
         """
-        # POSIT: pip sets this to the build dir
-        p = os.getenv("PIP_BUILD_TRACKER") + "/" + _CACHE_FILE
+        # POSIT: pip sets this to the build dir; Otherwise is "build", guess pwd doesn't change
+        p = os.getenv("PIP_BUILD_TRACKER", os.getcwd()) + "/" + _CACHE_FILE
         try:
             f = open(p, "rt")
             rv = f.read()
